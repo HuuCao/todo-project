@@ -15,17 +15,17 @@ body {
 }
 
 .task-list li {
-  background-color: #fff; /* Màu nền mặc định */
+  background-color: #fff;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .task-list li.completed {
-  background-color: limegreen; /* Màu nền khi task đã hoàn thành */
+  background-color: limegreen;
 }
 
 .task-list li.incomplete {
-  background-color: orange; /* Màu nền khi task chưa hoàn thành */
+  background-color: orange;
 }
 
 button {
@@ -33,7 +33,7 @@ button {
 }
 
 button.edit-task {
-  background-color: #4CAF50; /* Màu xanh lá cây */
+  background-color: #4CAF50;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -43,11 +43,11 @@ button.edit-task {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button.delete-task {
-  background-color: red; /* Màu xanh lá cây */
+  background-color: red;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -57,11 +57,11 @@ button.delete-task {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button.add-task {
-  background-color: #007bff; /* Màu xanh lá cây */
+  background-color: #007bff;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -71,5 +71,5 @@ button.add-task {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Shadow */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }

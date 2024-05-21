@@ -7,9 +7,6 @@ const Add: React.FC = () => {
   const [taskDate, setTaskDate] = useState<string>('');
   const [taskCategory, setTaskCategory] = useState('');
 
-  // const [nameError, setNameError] = useState<string>("");
-  // const [descriptionError, setDescriptionError] = useState<string>("");
-
   const n = useNavigate();
   const newTask = {
     id: crypto.randomUUID(),
