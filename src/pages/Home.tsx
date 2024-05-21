@@ -61,7 +61,7 @@ const Home: React.FC = () => {
       <h1 style={{ color: "white" }}>Home</h1>
       
       <Link to="/add">
-        <button type="button" aria-label="Add Task">Add Task</button>
+        <button className='add-task' type="button" aria-label="Add Task">Add Task</button>
       </Link>
 
       <div>
@@ -100,8 +100,8 @@ const Home: React.FC = () => {
               <button onClick={() => toggleDone(task.id)}>
                 {task.done ? 'Mark Incomplete' : 'Mark Complete'}
               </button>
-              <button onClick={() => deleteTask(task.id)}>Delete</button>
-              <button onClick={() => navigate(`/edit/${task.id}`)}>Edit</button>
+              <button className='delete-task' onClick={() => deleteTask(task.id)}>Delete</button>
+              <button className='edit-task' onClick={() => navigate(`/edit/${task.id}`)}>Edit</button>
             </div>
           </li>
         ))}
