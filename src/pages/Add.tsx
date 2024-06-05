@@ -36,7 +36,7 @@ const Add: React.FC = () => {
 
   return (
     <>
-      <div style={{ color: 'white' }}>
+      <div>
         <h1>Add Task</h1>
         <form>
           <div>

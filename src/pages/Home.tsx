@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { Layout as AntdLayout, Layout, Empty, Button } from 'antd'
+import Header from '~/components/Header'
+import Tasks from '~/components/Tasks'
+import General from '~/components/General'
+import useStyles from '~/styles/home.styled'
+import { PlusOutlined } from '@ant-design/icons'
 
 interface Task {
   id: string
@@ -16,7 +22,7 @@ const Home: React.FC = () => {
     return listTask ? JSON.parse(listTask).reverse() : []
   })
 
-  const [searchTerm, setSearchTerm] = useState<string>('')
+  const [searchTerm, setSearchTerm] = useState('')
   const [filter, setFilter] = useState<string>('all')
   const navigate = useNavigate()
 
@@ -56,54 +62,77 @@ const Home: React.FC = () => {
   const completedTasksCount = tasks.filter((task) => task.done).length
   const incompleteTasksCount = tasks.filter((task) => !task.done).length
 
+  // ========================================================================= //
+  // New code
+  const { styles } = useStyles()
+
   return (
-    <>
-      <h1 style={{ color: 'white' }}>Home</h1>
-      <Link to='/add'>
-        <button className='add-task' type='button' aria-label='Add Task'>
-          Add Task
-        </button>
-      </Link>
-      <div>
-        <input type='text' placeholder='Search by task name' value={searchTerm} onChange={handleSearch} />
-      </div>{' '}
-      <hr />
-      <div>
-        <label htmlFor='filter'>Filter tasks: </label>
-        <select id='filter' value={filter} onChange={handleFilterChange}>
-          <option value='all'>All</option>
-          <option value='completed'>Completed</option>
-          <option value='incomplete'>Incomplete</option>
-        </select>
-      </div>{' '}
-      <hr />
-      <div>
-        <p>Total tasks: {tasks.length}</p>
-        <p>Completed tasks: {completedTasksCount}</p>
-        <p>Incomplete tasks: {incompleteTasksCount}</p>
-      </div>{' '}
-      <hr />
-      <ul className='task-list' style={{ listStyleType: 'none', padding: 0 }}>
-        {filteredTasks.map((task: Task) => (
-          <li key={task.id} style={{ marginBottom: '10px' }} className={task.done ? 'completed' : 'incomplete'}>
-            <div>
-              <h3>{task.name}</h3>
-              <p>{task.description}</p>
-              <p>Category: {task.category}</p>
-              <p>Date: {task.date}</p>
-              <p>Status: {task.done ? 'Completed' : 'Incomplete'}</p>
-              <button onClick={() => toggleDone(task.id)}>{task.done ? 'Mark Incomplete' : 'Mark Complete'}</button>
-              <button className='delete-task' onClick={() => deleteTask(task.id)}>
-                Delete
-              </button>
-              <button className='edit-task' onClick={() => navigate(`/edit/${task.id}`)}>
-                Edit
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </>
+    // <>
+    //   <h1>Home</h1>
+    //   <Link to='/add'>
+    //     <button className='add-task' type='button' aria-label='Add Task'>
+    //       Add Task
+    //     </button>
+    //   </Link>
+    //   <div>
+    //     <input type='text' placeholder='Search by task name' value={searchTerm} onChange={handleSearch} />
+    //   </div>
+    //   <hr />
+    //   <div>
+    //     <label htmlFor='filter'>Filter tasks: </label>
+    //     <select id='filter' value={filter} onChange={handleFilterChange}>
+    //       <option value='all'>All</option>
+    //       <option value='completed'>Completed</option>
+    //       <option value='incomplete'>Incomplete</option>
+    //     </select>
+    //   </div>
+    //   <hr />
+    //   <div>
+    //     <p>Total tasks: {tasks.length}</p>
+    //     <p>Completed tasks: {completedTasksCount}</p>
+    //     <p>Incomplete tasks: {incompleteTasksCount}</p>
+    //   </div>
+    //   <hr />
+    //   <ul className='task-list' style={{ listStyleType: 'none', padding: 0 }}>
+    //     {filteredTasks.map((task: Task) => (
+    //       <li key={task.id} style={{ marginBottom: '10px' }} className={task.done ? 'completed' : 'incomplete'}>
+    //         <div>
+    //           <h3>{task.name}</h3>
+    //           <p>{task.description}</p>
+    //           <p>Category: {task.category}</p>
+    //           <p>Date: {task.date}</p>
+    //           <p>Status: {task.done ? 'Completed' : 'Incomplete'}</p>
+    //           <button onClick={() => toggleDone(task.id)}>{task.done ? 'Mark Incomplete' : 'Mark Complete'}</button>
+    //           <button className='delete-task' onClick={() => deleteTask(task.id)}>
+    //             Delete
+    //           </button>
+    //           <button className='edit-task' onClick={() => navigate(`/edit/${task.id}`)}>
+    //             Edit
+    //           </button>
+    //         </div>
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </>
+    <AntdLayout className={styles.layoutContainer}>
+      <Header />
+      <General />
+      <div className={styles.taskContainer}>
+        {tasks.length > 0 ? (
+          <Tasks />
+        ) : (
+          <Empty
+            imageStyle={{
+              height: 80
+            }}
+            description={<span style={{ color: 'white' }}>Hiện tại không có task nào, hãy thêm task mới!</span>}
+          ></Empty>
+        )}
+      </div>
+      <div className={styles.iconAddContainer} onClick={() => navigate('/add')}>
+        <PlusOutlined className={styles.iconAdd} />
+      </div>
+    </AntdLayout>
   )
 }
 

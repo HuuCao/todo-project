@@ -1,4 +1,3 @@
-import './App.css'
 import AppRouter from './router'
 import MainLayout from './layouts/MainLayouts'
 
